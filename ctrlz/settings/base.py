@@ -25,8 +25,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     'home',
-    'search',
+    'streams',
+    'flex',
     'blog',
+    'search',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -39,9 +41,12 @@ INSTALLED_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
+    'wagtail.contrib.routable_page',
 
     'modelcluster',
     'taggit',
+
+    'debug_toolbar',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,6 +69,8 @@ MIDDLEWARE = [
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'ctrlz.urls'
