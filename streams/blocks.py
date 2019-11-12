@@ -1,22 +1,36 @@
 from wagtail.core import blocks
 
 
-class TitleAndTextStreamBlock(blocks.StructBlock):
-    """Title and Text Stream Block"""
+class TitleBlock(blocks.StructBlock):
+    """Title Stream Block"""
 
     title = blocks.CharBlock(required=True, help_text="Add your title")
-    text = blocks.TextBlock(required=True, help_text="Add additional text")
 
     class Meta:
-        template = "streams/title_and_text_block.html"
+        template = "streams/title_block.html"
         icon = "edit"
-        label = "Title & Text"
+        label = "Title"
 
 
-class RichTextSteamBlock(blocks.RichTextBlock):
-    """Rich Text Stream Block"""
+class TextBlock(blocks.StructBlock):
+    """Text Stream Block"""
+
+    text = blocks.CharBlock(required=True, help_text="Add your text")
+
+    class Meta:
+        template = "streams/text_block.html"
+        icon = "edit"
+        label = "Text"
+
+
+class RichTextBlock(blocks.RichTextBlock):
+    """Rich Text Block"""
 
     class Meta:
         template = "streams/rich_text_block.html"
         icon = "doc-full"
         label = "RichText"
+
+# TODO: Add Featured Article Block
+# TODO: Add Recent Article Block
+# TODO: Maybe Navbar Block

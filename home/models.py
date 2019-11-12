@@ -8,6 +8,7 @@ from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 class HomePage(Page):
     """Home page model."""
 
+    # TODO: Clean up homepage names
     banner_title = models.CharField(max_length=100, blank=False, null=True)
     banner_subtitle = RichTextField(features=["bold", "italic"])
 
