@@ -46,6 +46,16 @@ class BlogIndexPage(RoutablePageMixin, Page):
             raise Http404
         return Page.serve(article_page, request, *args, **kwargs)
 
+    @route(r'^search/$')
+    def post_search(self, request, *args, **kwargs):
+        search_query = request.GET.get('q', None)
+        self.article = self.get_articles()
+        if search_query:
+            self.article = self.article.filter(body__contains=search_query)
+            self.search_term = search_query
+            self.search_type = 'search'
+        return Page.serve(self, request, *args, **kwargs)
+
 
 @register_snippet
 class ArticleCategory(models.Model):

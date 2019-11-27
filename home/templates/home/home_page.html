@@ -4,6 +4,14 @@
 
 {% block content %}
   <div>
+    <nav>Nav</nav>
+    <ul class="nav navbar-nav">
+      {% for menu in menuitems %}
+        <li>
+         <a href="{{menu.url}}">{{menu.title}}</a>
+        </li>
+      {% endfor %}
+    </ul>
     <h1>{{ self.banner_title }}</h1>
     <div>{{ self.banner_subtitle|richtext }}</div>
     {% if self.banner_cta %}

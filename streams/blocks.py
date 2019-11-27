@@ -33,4 +33,3 @@ class RichTextBlock(blocks.RichTextBlock):
 
 # TODO: Add Featured Article Block
 # TODO: Add Recent Article Block
-# TODO: Maybe Navbar Block

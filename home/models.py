@@ -20,6 +20,13 @@ class HomePage(Page):
         related_name="+"
     )
 
+    def get_context(self, request):
+        context = super().get_context(request)
+        context['menuitems'] = self.get_children().filter(
+            live=True, show_in_menus=True)
+
+        return context
+
     content_panels = Page.content_panels + [
         FieldPanel("banner_title"),
         FieldPanel("banner_subtitle"),
@@ -27,6 +34,5 @@ class HomePage(Page):
     ]
 
     class Meta:
-
         verbose_name = "Home Page"
         verbose_name_plural = "Home Pages"
