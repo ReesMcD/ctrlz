@@ -26,9 +26,15 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
+        {% load menu_tags %}
+        <nav class="" role="navigation">
+            {% main_menu templates="menus/main/menu.html" %}
+        </nav>
+
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
+        {% flat_menu 'footer' templates="menus/flat/footer/menu.html" %}
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/ctrlz.js' %}"></script>

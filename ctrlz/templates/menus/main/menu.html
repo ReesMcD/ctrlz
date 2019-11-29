@@ -1,0 +1,10 @@
+<div>
+  <h1><a href="/">ctrl z </a></h1>
+  <ul class="nav navbar-nav">
+    {% for item in menu_items %}
+      <li>
+        <a href="{{item.href}}">{{item.text}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'wagtail.contrib.modeladmin',
+    'wagtailmenus',
 ]
 
 INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
@@ -88,6 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'wagtailmenus.context_processors.wagtailmenus',
             ],
         },
     },
