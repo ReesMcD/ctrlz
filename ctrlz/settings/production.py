@@ -1,6 +1,8 @@
 import os
 from .base import *
 import environ
+import dj_database_url
+
 
 env = environ.Env(
     # set casting, default value
@@ -11,6 +13,7 @@ environ.Env.read_env(".env.production")
 
 DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
+DATABASES['default'] = dj_database_url.config()
 
 try:
     from .local import *
