@@ -1,10 +1,16 @@
 import os
 from .base import *
+import environ
 
-DEBUG = False
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env(".env.production")
 
-env = os.environ.copy()
-SECRET_KEY = env['SECRET_KEY']
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
 
 try:
     from .local import *
