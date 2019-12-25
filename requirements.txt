@@ -31,5 +31,6 @@ wagtail==2.5
 wagtail-whoosh==0.2.3
 wagtailmenus==3.0
 webencodings==0.5.1
+whitenoise==5.0.1
 Whoosh==2.7.4
 Willow==1.1
