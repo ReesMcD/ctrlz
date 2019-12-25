@@ -1,10 +1,17 @@
 from .base import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import environ
+import dj_database_url
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'nwy1eibx5_dw+ixwi-vh!u%a&l(w@_!8@=^ioys3x$b^abj&n2'
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+env.read_env(".env.development")
+
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*']

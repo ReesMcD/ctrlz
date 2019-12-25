@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import dj_database_url
 import os
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -117,7 +116,7 @@ DATABASES = {
 }
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] = dj_database_url.config()
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
