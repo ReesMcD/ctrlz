@@ -15,6 +15,7 @@ import os
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
+ROOT_DIR = os.path.abspath(os.path.dirname(__name__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
+
+    'wagtail_whoosh',
 ]
 
 INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
@@ -105,9 +108,17 @@ WSGI_APPLICATION = 'ctrlz.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ctrlz',
     }
+}
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail_whoosh.backend',
+        'PATH': os.path.join(ROOT_DIR, 'search_index'),
+        'LANGUAGE': 'en',
+    },
 }
 
 
