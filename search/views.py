@@ -1,8 +1,11 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
+from wagtail.search import index
+
 
 from wagtail.core.models import Page
 from wagtail.search.models import Query
+from blog.models import ArticlePage
 
 
 def search(request):
@@ -11,7 +14,9 @@ def search(request):
 
     # Search
     if search_query:
-        search_results = Page.objects.live().search(search_query)
+        index.AutocompleteField('title')
+        search_results = ArticlePage.objects.search(
+            search_query, fields=['title'])
         query = Query.get(search_query)
 
         # Record hit
