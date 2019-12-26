@@ -9,7 +9,7 @@ env = environ.Env(
     DEBUG=(bool, False)
 )
 # reading .env file
-environ.Env.read_env(".env.production")
+environ.Env.read_env()
 
 DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
