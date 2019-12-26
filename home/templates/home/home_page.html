@@ -10,4 +10,7 @@
         <a href="#">Link</a>
     {% endif %}
   </div>    
+  {% for block in page.banner %}
+      {% include_block block %}
+  {% endfor %}
 {% endblock %}

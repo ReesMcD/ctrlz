@@ -1,4 +1,5 @@
 from wagtail.core import blocks
+from wagtail.images.blocks import ImageChooserBlock
 
 
 class TitleBlock(blocks.StructBlock):
@@ -31,5 +32,25 @@ class RichTextBlock(blocks.RichTextBlock):
         icon = "doc-full"
         label = "RichText"
 
-# TODO: Add Featured Article Block
-# TODO: Add Recent Article Block
+
+class ThumbnailBlock(blocks.StructBlock):
+    page = blocks.PageChooserBlock(required=True)
+    image = ImageChooserBlock()
+
+    class Meta:
+        icon = "image"
+        label = "Thumbnail"
+
+
+class FeaturedBlock(blocks.StructBlock):
+
+    thumbnails = blocks.ListBlock(ThumbnailBlock())
+
+    class Meta:
+        template = "streams/featured_block.html"
+        icon = "site"
+        label = "Featured"
+
+
+class RecentArticleBlock(blocks.StructBlock):
+    pages = 'Most recent pages'

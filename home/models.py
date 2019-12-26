@@ -2,7 +2,9 @@ from django.db import models
 
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, StreamFieldPanel
+from wagtail.core.fields import StreamField
+from streams import blocks
 
 
 class HomePage(Page):
@@ -20,6 +22,14 @@ class HomePage(Page):
         related_name="+"
     )
 
+    banner = StreamField(
+        [
+            ("featured", blocks.FeaturedBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
+
     def get_context(self, request):
         context = super().get_context(request)
         context['menuitems'] = self.get_children().filter(
@@ -30,7 +40,8 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("banner_title"),
         FieldPanel("banner_subtitle"),
-        PageChooserPanel("banner_cta")
+        PageChooserPanel("banner_cta"),
+        StreamFieldPanel("banner"),
     ]
 
     class Meta:
