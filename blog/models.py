@@ -120,16 +120,6 @@ class ArticlePage(Page):
         InlinePanel('gallery_images', label='Gallery images'),
     ]
 
-    # @route(r'^search/$')
-    # def post_search(self, request, *args, **kwargs):
-    #     search_query = request.GET.get('q', None)
-    #     self.posts = self.get_posts()
-    #     if search_query:
-    #         self.posts = self.posts.filter(body__contains=search_query)
-    #         self.search_term = search_query
-    #         self.search_type = 'search'
-    #     return Page.serve(self, request, *args, **kwargs)
-
 
 class ArticlePageGalleryImage(Orderable):
     page = ParentalKey(ArticlePage, on_delete=models.CASCADE,
