@@ -1,17 +1,12 @@
 from .base import *
 
-import environ
 import dj_database_url
+from dotenv import load_dotenv
 
+load_dotenv()
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-env.read_env()
-
-DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
+DEBUG = os.environ['DEBUG']
+SECRET_KEY = os.environ['SECRET_KEY']
 DATABASES['default'] = dj_database_url.config()
 
 # SECURITY WARNING: define the correct hosts in production!
