@@ -8,7 +8,7 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
-env.read_env(".env.development")
+env.read_env(".env.staging")
 
 DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
