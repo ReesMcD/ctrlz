@@ -1,5 +1,7 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from blog.models import ArticlePage
+from wagtail.core.models import Page
 
 
 class TitleBlock(blocks.StructBlock):
@@ -34,23 +36,17 @@ class RichTextBlock(blocks.RichTextBlock):
 
 
 class ThumbnailBlock(blocks.StructBlock):
-    page = blocks.PageChooserBlock(required=True)
-    image = ImageChooserBlock()
+    page = blocks.PageChooserBlock(required=True, page_type=ArticlePage)
+    image = ImageChooserBlock(required=False)
 
     class Meta:
-        icon = "image"
         label = "Thumbnail"
 
 
 class FeaturedBlock(blocks.StructBlock):
-
-    thumbnails = blocks.ListBlock(ThumbnailBlock())
+    thumbnails = blocks.ListBlock(ThumbnailBlock(), max_num=3)
 
     class Meta:
         template = "streams/featured_block.html"
-        icon = "site"
+        icon = "image"
         label = "Featured"
-
-
-class RecentArticleBlock(blocks.StructBlock):
-    pages = 'Most recent pages'

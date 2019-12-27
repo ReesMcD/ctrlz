@@ -1,4 +1,62 @@
-<p>featured</p>
-{% for thumbnail in self.thumbnails %}
-  <h2>{{thumbnail.page}}</h2>
-{% endfor %}
+{% load wagtailcore_tags wagtailimages_tags %}
+<div class="columns is-gapless">
+  {% with self.thumbnails as thumbnails %}
+  <div class="column is-two-thirds">
+    {% with thumbnails.0 as thumbnail %}
+    {% if thumbnail.page.main_image %}
+      <a href="{{thumbnail.page.url}}">
+        <figure class="image is-3by2">
+          {% image thumbnail.page.main_image fill-1600x1000 %}
+          <h2 class="title is-1 is-overlay">{{thumbnail.page}}</h2>
+        </figure>
+      </a>
+    {% else %}
+      <a href="{{thumbnail.page.url}}">
+        <figure class="image is-3by2">
+          {% image thumbnail.image fill-1600x1000 %}
+          <h2 class="title is-1 is-overlay">{{thumbnail.page}}</h2>
+        </figure>
+      </a>
+    {% endif %}
+    {% endwith %}
+  </div>
+
+  <div class="column">
+    {% with thumbnails.1 as thumbnail %}
+      {% if thumbnail.page.main_image %}
+        <a href="{{thumbnail.page.url}}">
+          <figure class="image is-3by2">
+            {% image thumbnail.page.main_image fill-1600x1000 %}
+            <h2 class="title is-2 is-overlay">{{thumbnail.page}}</h2>
+          </figure>
+        </a>
+      {% else %}
+        <a href="{{thumbnail.page.url}}">
+          <figure class="image is-3by2">
+            {% image thumbnail.image fill-1600x1000 %}
+            <h2 class="title is-2 is-overlay">{{thumbnail.page}}</h2>
+          </figure>
+        </a>
+      {% endif %}
+    {% endwith %}
+
+    {% with thumbnails.2 as thumbnail %}
+      {% if thumbnail.page.main_image %}
+        <a href="{{thumbnail.page.url}}">
+          <figure class="image is-3by2">
+            {% image thumbnail.page.main_image fill-1600x1000 %}
+            <h2 class="title is-2 is-overlay">{{thumbnail.page}}</h2>
+          </figure>
+        </a>
+      {% else %}
+        <a href="{{thumbnail.page.url}}">
+          <figure class="image is-3by2">
+            {% image thumbnail.image fill-1600x1000 %}
+            <h2 class="title is-2 is-overlay">{{thumbnail.page}}</h2>
+          </figure>
+        </a>
+      {% endif %}
+    {% endwith %}
+  </div>
+  {% endwith %}
+</div>

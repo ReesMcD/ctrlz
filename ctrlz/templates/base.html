@@ -18,7 +18,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/ctrlz.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bulma.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -27,14 +28,20 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% load menu_tags %}
-        <nav class="" role="navigation">
-            {% main_menu templates="menus/main/menu.html" %}
-        </nav>
+        <div>
+          {% main_menu templates="menus/main/menu.html" %}
+        </div>
 
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
-        {% flat_menu 'footer' templates="menus/flat/footer/menu.html" %}
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <footer>
+            {% flat_menu 'footer' templates="menus/flat/footer/menu.html" %}
+        </footer>
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/ctrlz.js' %}"></script>

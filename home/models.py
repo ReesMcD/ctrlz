@@ -10,21 +10,12 @@ from streams import blocks
 class HomePage(Page):
     """Home page model."""
 
-    # TODO: Clean up homepage names
-    banner_title = models.CharField(max_length=100, blank=False, null=True)
-    banner_subtitle = RichTextField(features=["bold", "italic"])
-
-    banner_cta = models.ForeignKey(
-        "wagtailcore.Page",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+"
-    )
-
-    banner = StreamField(
+    content = StreamField(
         [
             ("featured", blocks.FeaturedBlock()),
+            ("title", blocks.TitleBlock()),
+            ("text", blocks.TextBlock()),
+            ("richtext", blocks.RichTextBlock()),
         ],
         null=True,
         blank=True,
@@ -38,10 +29,7 @@ class HomePage(Page):
         return context
 
     content_panels = Page.content_panels + [
-        FieldPanel("banner_title"),
-        FieldPanel("banner_subtitle"),
-        PageChooserPanel("banner_cta"),
-        StreamFieldPanel("banner"),
+        StreamFieldPanel("content"),
     ]
 
     class Meta:

@@ -15,7 +15,7 @@ def search(request):
     # Search
     if search_query:
         index.AutocompleteField('title')
-        search_results = ArticlePage.objects.search(
+        search_results = ArticlePage.objects.live().search(
             search_query, fields=['title'])
         query = Query.get(search_query)
 
