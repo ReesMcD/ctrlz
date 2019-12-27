@@ -19,6 +19,7 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/bulma.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bulma-extention.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
         {% block extra_css %}
@@ -34,7 +35,7 @@
 
         {% wagtailuserbar %}
 
-        <div>
+        <div class="container is-fluid is-paddingless is-marginless">
             {% block content %}
             {% endblock %}
         </div>
@@ -44,7 +45,8 @@
         </footer>
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/ctrlz.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bulma-extention.min.js' %}"></script>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}

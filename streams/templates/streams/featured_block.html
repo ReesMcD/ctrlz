@@ -1,62 +1,46 @@
 {% load wagtailcore_tags wagtailimages_tags %}
-<div class="columns is-gapless">
-  {% with self.thumbnails as thumbnails %}
-  <div class="column is-two-thirds">
-    {% with thumbnails.0 as thumbnail %}
-    {% if thumbnail.page.main_image %}
-      <a href="{{thumbnail.page.url}}">
-        <figure class="image is-3by2">
-          {% image thumbnail.page.main_image fill-1600x1000 %}
-          <h2 class="title is-1 is-overlay">{{thumbnail.page}}</h2>
-        </figure>
-      </a>
-    {% else %}
-      <a href="{{thumbnail.page.url}}">
-        <figure class="image is-3by2">
-          {% image thumbnail.image fill-1600x1000 %}
-          <h2 class="title is-1 is-overlay">{{thumbnail.page}}</h2>
-        </figure>
-      </a>
-    {% endif %}
-    {% endwith %}
-  </div>
+<div class="container is-fluid is-paddingless is-marginless">
 
-  <div class="column">
-    {% with thumbnails.1 as thumbnail %}
-      {% if thumbnail.page.main_image %}
-        <a href="{{thumbnail.page.url}}">
-          <figure class="image is-3by2">
-            {% image thumbnail.page.main_image fill-1600x1000 %}
-            <h2 class="title is-2 is-overlay">{{thumbnail.page}}</h2>
-          </figure>
-        </a>
-      {% else %}
-        <a href="{{thumbnail.page.url}}">
-          <figure class="image is-3by2">
-            {% image thumbnail.image fill-1600x1000 %}
-            <h2 class="title is-2 is-overlay">{{thumbnail.page}}</h2>
-          </figure>
-        </a>
-      {% endif %}
-    {% endwith %}
+  <div class="columns is-gapless">
+    {% with self.thumbnails as thumbnails %}
+      <div class="column is-two-thirds">
+        {% with thumbnails.0 as thumbnail %}
+          <a href="{{thumbnail.page.url}}">
+            <figure class="image is-3by2">
+              {% if thumbnail.page.main_image %}
+                {% image thumbnail.page.main_image fill-1600x1000 %}
+              {% else %}
+                {% image thumbnail.image fill-1600x1000 %}
+              {% endif %}
+              <div class="is-overlay">
+                <h2 class="title is-1">{{thumbnail.page.title}}</h2>
+                <p class="subtitle is-3">{{thumbnail.page.intro}}</p>
+                </div>
+              </figure>
+            </a>
+        {% endwith %}
+        </div>
 
-    {% with thumbnails.2 as thumbnail %}
-      {% if thumbnail.page.main_image %}
-        <a href="{{thumbnail.page.url}}">
-          <figure class="image is-3by2">
-            {% image thumbnail.page.main_image fill-1600x1000 %}
-            <h2 class="title is-2 is-overlay">{{thumbnail.page}}</h2>
-          </figure>
-        </a>
-      {% else %}
-        <a href="{{thumbnail.page.url}}">
-          <figure class="image is-3by2">
-            {% image thumbnail.image fill-1600x1000 %}
-            <h2 class="title is-2 is-overlay">{{thumbnail.page}}</h2>
-          </figure>
-        </a>
-      {% endif %}
-    {% endwith %}
-  </div>
-  {% endwith %}
+      <div class="column">
+        {% for thumbnail in thumbnails%}
+        {% if forloop.counter0 == 1 or forloop.counter0 == 2 %}
+          <a href="{{thumbnail.page.url}}">
+            <figure class="image is-3by2">
+              {% if thumbnail.page.main_image %}  
+                {% image thumbnail.page.main_image fill-1600x1000 %}
+              {% else %}
+                {% image thumbnail.image fill-1600x1000 %}
+              {% endif %}
+              <div class="is-overlay">
+                <h2 class="title is-2">{{thumbnail.page}}</h2>
+                <p class="subtitle is-3">{{thumbnail.page.intro}}</p>
+              </div>
+            </figure>
+          </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+      {% endwith %}
+    </div>
 </div>
